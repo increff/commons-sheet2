@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Creates a Paged list which is a list of lists. Each sub-list's size is <= pagesize
+ * Creates a Paged list which is a list of lists. Each sub-list's size is less or equal pagesize
  * Why PageList and Why not ArrayList??
  * By Default ArrayList starts with size 10 and every time it gets filled up, it doubles up itself to a new
  * location in memory and copies the content from the previous version. This gets very costly when list size is large
