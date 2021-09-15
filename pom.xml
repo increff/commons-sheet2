@@ -14,7 +14,7 @@
 
 	<groupId>com.increff.commons</groupId>
 	<artifactId>increff-commons-sheet</artifactId>
-	<version>1.8.2-SNAPSHOT</version>
+	<version>1.8.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>increff-commons-sheet</name>
