@@ -55,7 +55,6 @@ public class DataFileTest {
         assertTrue(dataFile.getErrors().stream().map(k -> k.getError()).collect(Collectors.toSet()).contains("Text '2019-09-31' could not be parsed: Invalid date 'SEPTEMBER 31'"));
 
         expectedEx.expect(SheetException.class);
-        expectedEx.expectMessage(" are not expected in the file");
         fileStream = getInputStream(CHANNELSTOCK_FILE_ERROR4);
         dataFile.read(fileStream);
         assertTrue(dataFile.getErrors().stream().map(k -> k.getError()).collect(Collectors.toSet()).contains("Invalid column:sku"));
