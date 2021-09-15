@@ -141,12 +141,8 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
     protected abstract String[] getHeaders();
 
     protected static void validateHeaders(Set<String> headers, Set<String> expectedHeaders) throws SheetException {
-        Set<String> additionalHeaders = new HashSet<>(headers);
         Set<String> missingHeaders = new HashSet<>(expectedHeaders);
-        additionalHeaders.removeAll(expectedHeaders);
         missingHeaders.removeAll(headers);
-        if (!additionalHeaders.isEmpty())
-            throw new SheetException(String.join(",", additionalHeaders) + " are not expected in the file");
         if (!missingHeaders.isEmpty())
             throw new SheetException(String.join(",", missingHeaders) + " are not found in the file");
     }
