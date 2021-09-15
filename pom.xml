@@ -14,7 +14,7 @@
 
 	<groupId>com.increff.commons</groupId>
 	<artifactId>increff-commons-sheet</artifactId>
-	<version>1.8.3-SNAPSHOT</version>
+	<version>1.8.3</version>
 	<packaging>jar</packaging>
 
 	<name>increff-commons-sheet</name>
@@ -151,7 +151,7 @@
 		<connection>scm:git:git://github.com/increff/commons-sheet2.git</connection>
 		<developerConnection>scm:git:git@github.com:increff/commons-sheet2.git</developerConnection>
 		<url>https://github.com/increff/commons-sheet2</url>
-		<tag>rel-increff-commons-sheet-1.6</tag>
+		<tag>increff-commons-sheet-1.8.3</tag>
 	</scm>
 
 	<licenses>
