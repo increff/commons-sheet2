@@ -30,7 +30,7 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
     private String delimValue = "\t";
     private String nullValue = "null";
     private Integer maxRows = 1_00_000;
-
+    private String fileExtension = ".parquet";
     private int count;
     private ParquetReader<GenericRecord> reader;
     private ParquetWriter<GenericRecord> writer;
@@ -48,6 +48,12 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
      */
     public void setDelimiterValue(String s) {
         this.delimValue = s;
+    }
+    public String getFileExtension(){
+        return this.fileExtension;
+    }
+    public void setFileExtension(String extension){
+        this.fileExtension = extension;
     }
 
     public void setMaxRows(Integer maxRows) {
@@ -89,6 +95,8 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
         Schema expectedSchema = computeSchema();
         errors = new PagedList<>();
         count = 0;
+
+        //TODO: optimise by reading it directly from stream.
 
         File tempFile = File.createTempFile("temp-parquet-interim", ".parquet");
         tempFile.deleteOnExit();

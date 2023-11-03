@@ -19,8 +19,8 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
     private String newlineValue = "\n";
     private String delimValue = "\t";
     private String nullValue = "null";
-    private Integer maxRows = 1_00_000;
-
+    private Integer maxRows = Integer.MAX_VALUE;
+    private String fileExtension = ".tsv";
     private int count;
     private BufferedReader reader;
     private BufferedWriter writer;
@@ -30,14 +30,19 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
     private ArrayList<T> data;
 
     /**
-     * @param s This function takes a string 's' as a delimeter.
+     * @params This function takes a string 's' as a delimeter.
      *          By default it is '\t'
      *          To use any different delimeter, please override this function
      */
     public void setDelimiterValue(String s) {
         this.delimValue = s;
     }
-
+    public String getFileExtension(){
+        return this.fileExtension;
+    }
+    public void setFileExtension(String extension){
+        this.fileExtension = extension;
+    }
     public void setMaxRows(Integer maxRows) {
         this.maxRows = maxRows;
     }
