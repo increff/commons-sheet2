@@ -31,6 +31,8 @@
 
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
+		<paquet.version>1.13.1</paquet.version>
+		<hadoop.version>3.3.5</hadoop.version>
 	</properties>
 
 	<dependencies>
@@ -49,6 +51,32 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-hadoop</artifactId>
+			<version>${paquet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-common</artifactId>
+			<version>${paquet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-avro</artifactId>
+			<version>${paquet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+			<version>${hadoop.version}</version>
+		</dependency>
+
 	</dependencies>
 
 
