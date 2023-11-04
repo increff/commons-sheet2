@@ -19,6 +19,8 @@ import java.util.ArrayList;
 public interface IDataFile<T> {
     public String getFileExtension();
 
+    public void setMaxRows(Integer maxRows);
+
     public void setData(ArrayList<T> data);
 
     public ArrayList<T> getData();

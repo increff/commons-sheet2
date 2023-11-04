@@ -19,7 +19,7 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
     private String newlineValue = "\n";
     private String delimValue = "\t";
     private String nullValue = "null";
-    private Integer maxRows = Integer.MAX_VALUE;
+    private Integer maxRows = 1_00_000;
     private String fileExtension = ".tsv";
     private int count;
     private BufferedReader reader;
