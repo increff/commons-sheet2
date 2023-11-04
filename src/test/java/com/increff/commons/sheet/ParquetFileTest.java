@@ -96,7 +96,7 @@ public class ParquetFileTest {
     private List<DemoParquetRow> getExampleRowList(){
         List<DemoParquetRow> rowList = new ArrayList<>();
         DemoParquetRow row = new DemoParquetRow();
-        row.day = LocalDate.now();
+        row.day = LocalDate.of(2023, 10, 15);
         row.channel = 1;
         row.sku = 25;
         row.revenue = 25.55;

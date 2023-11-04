@@ -12,7 +12,6 @@ import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.reflect.ReflectData;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.parquet.avro.AvroParquetReader;
 import org.apache.parquet.avro.AvroParquetWriter;
 import org.apache.parquet.avro.AvroSchemaConverter;
@@ -96,22 +95,10 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
         errors = new PagedList<>();
         count = 0;
 
-        //TODO: optimise by reading it directly from stream.
+        ParquetStreamReader parquetStream = new ParquetStreamReader(is);
 
-        File tempFile = File.createTempFile("temp-parquet-interim", ".parquet");
-        tempFile.deleteOnExit();
-
-        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = is.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesRead);
-            }
-        }
-
-        reader = AvroParquetReader
-                .<GenericRecord>builder(new Path(tempFile.getAbsolutePath()))
-                .withConf(new Configuration())
+        ParquetReader<GenericRecord> reader = AvroParquetReader.<GenericRecord>builder(parquetStream)
+                .disableCompatibility()
                 .build();
 
         GenericRecord record;
@@ -142,7 +129,6 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
         data = pagedList.getAll();
         reader.close();
 
-        tempFile.delete();
     }
 
 
@@ -156,7 +142,7 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
 
         Schema schema = computeSchema();
 
-        ParquetBufferedWriter out = new ParquetBufferedWriter(os);
+        ParquetStreamWriter out = new ParquetStreamWriter(os);
         writer = AvroParquetWriter.<GenericRecord>builder(out)
                 .withSchema(schema)
                 .withDataModel(ReflectData.get())

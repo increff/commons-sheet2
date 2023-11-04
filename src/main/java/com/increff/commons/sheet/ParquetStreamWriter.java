@@ -4,15 +4,14 @@ import org.apache.parquet.io.OutputFile;
 import org.apache.parquet.io.PositionOutputStream;
 
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-class ParquetBufferedWriter implements OutputFile {
+class ParquetStreamWriter implements OutputFile {
 
     private final OutputStream out;
 
-    public ParquetBufferedWriter(OutputStream out) {
+    public ParquetStreamWriter(OutputStream out) {
         this.out = out;
     }
 
