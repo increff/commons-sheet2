@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.function.Function;
 
 public interface IDataFile<T> {
     public String getFileExtension();
@@ -28,6 +29,10 @@ public interface IDataFile<T> {
     public void write(OutputStream os) throws IOException;
 
     public void read(InputStream is) throws Exception;
+
+    public String[] getPartitioningColumns();
+
+    public <K> Function<T, K> getPartitioningFunction();
 
     public void setProgressMonitor(IProgressMonitor progress);
 

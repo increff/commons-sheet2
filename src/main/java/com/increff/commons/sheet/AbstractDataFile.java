@@ -13,6 +13,7 @@ package com.increff.commons.sheet;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
 
 public abstract class AbstractDataFile<T> implements IDataFile<T> {
 
@@ -30,7 +31,7 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
     private ArrayList<T> data;
 
     /**
-     * @params This function takes a string 's' as a delimeter.
+     * @param s  This function takes a string 's' as a delimeter.
      *          By default it is '\t'
      *          To use any different delimeter, please override this function
      */
@@ -155,6 +156,10 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
     protected abstract void write(DataRow rec, T t);
 
     protected abstract String[] getHeaders();
+    @Override
+    public  abstract  String[] getPartitioningColumns();
+    @Override
+    public abstract <K> Function<T, K> getPartitioningFunction();
 
     protected static void validateHeaders(Set<String> headers, Set<String> expectedHeaders) throws SheetException {
         Set<String> missingHeaders = new HashSet<>(expectedHeaders);

@@ -11,6 +11,8 @@
 
 package com.increff.commons.sheet;
 
+import java.util.function.Function;
+
 public class ChannelStockFile extends AbstractDataFile<ChannelStockRow> {
 
     public ChannelStockFile() {
@@ -37,6 +39,16 @@ public class ChannelStockFile extends AbstractDataFile<ChannelStockRow> {
     protected void write(DataRow r, ChannelStockRow o) {
         throw new RuntimeException("Write not implemented for " + ChannelStockRow.class.getName());
 
+    }
+
+    @Override
+    public String[] getPartitioningColumns() {
+        return new String[]{"channel", "day"};
+    }
+
+    @Override
+    public Function<ChannelStockRow, String> getPartitioningFunction() {
+        return (ChannelStockRow r) -> r.channel + "_" + r.day;
     }
 
 }

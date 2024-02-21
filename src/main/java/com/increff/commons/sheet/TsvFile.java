@@ -13,6 +13,7 @@ package com.increff.commons.sheet;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.function.Function;
 
 /**
  * Implementation of the AbstractDataFile to handle .tsv files
@@ -20,6 +21,16 @@ import java.util.Set;
 public class TsvFile extends AbstractDataFile<DataRow> {
 
     private String[] headers = {};
+
+    @Override
+    public String[] getPartitioningColumns() {
+        return new String[0];
+    }
+
+    @Override
+    public Function<DataRow, String> getPartitioningFunction() {
+        return (DataRow r) -> "";
+    }
 
     @Override
     protected DataRow read(DataRow rec) {
