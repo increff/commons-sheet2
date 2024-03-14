@@ -157,9 +157,13 @@ public abstract class AbstractDataFile<T> implements IDataFile<T> {
 
     protected abstract String[] getHeaders();
     @Override
-    public  abstract  String[] getPartitioningColumns();
+    public  String[] getPartitioningColumns(){
+        return new String[0];
+    }
     @Override
-    public abstract <K> Function<T, K> getPartitioningFunction();
+    public <K> Function<T, K> getPartitioningFunction(){
+        return null;
+    }
 
     protected static void validateHeaders(Set<String> headers, Set<String> expectedHeaders) throws SheetException {
         Set<String> missingHeaders = new HashSet<>(expectedHeaders);

@@ -177,9 +177,13 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
     protected abstract void write(GenericRecord rec, T t);
     protected abstract Type[] getSchema();
     @Override
-    public  abstract  String[] getPartitioningColumns();
+    public String[] getPartitioningColumns(){
+        return new String[0];
+    }
     @Override
-    public abstract  <K> Function<T, K> getPartitioningFunction();
+    public <K> Function<T, K> getPartitioningFunction(){
+        return null;
+    };
     protected static void validateHeaders(Schema incomingSchema, Schema expectedSchema) throws SheetException {
 
         Map<String, Schema> fieldInfo1 = extractFieldInfo(incomingSchema);
