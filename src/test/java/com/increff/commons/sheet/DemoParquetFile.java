@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.function.Function;
 
 public class DemoParquetFile extends AbstractParquetFile<DemoParquetRow>{
 
@@ -63,5 +64,15 @@ public class DemoParquetFile extends AbstractParquetFile<DemoParquetRow>{
         r.put("style_code",o.style_code);
         r.put("seasons", String.join("#", o.seasons));
         r.put("store_codes", String.join("#", o.store_codes));
+    }
+
+    @Override
+    public String[] getPartitioningColumns() {
+        return new String[]{"channel", "day"};
+    }
+
+    @Override
+    public <K> Function<DemoParquetRow, K> getPartitioningFunction() {
+        return (DemoParquetRow r) -> (K) (r.channel + "_" + r.day);
     }
 }

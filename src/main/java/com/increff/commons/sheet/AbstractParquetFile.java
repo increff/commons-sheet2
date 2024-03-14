@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Function;
 
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
@@ -175,7 +176,14 @@ public abstract class AbstractParquetFile<T> implements IDataFile<T> {
     protected abstract T read(GenericRecord rec) throws Exception;
     protected abstract void write(GenericRecord rec, T t);
     protected abstract Type[] getSchema();
-
+    @Override
+    public String[] getPartitioningColumns(){
+        return new String[0];
+    }
+    @Override
+    public <K> Function<T, K> getPartitioningFunction(){
+        return null;
+    };
     protected static void validateHeaders(Schema incomingSchema, Schema expectedSchema) throws SheetException {
 
         Map<String, Schema> fieldInfo1 = extractFieldInfo(incomingSchema);
