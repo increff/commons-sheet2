@@ -33,6 +33,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<parquet.version>1.13.1</parquet.version>
 		<hadoop.version>3.3.5</hadoop.version>
+		<opencsv.version>3.7</opencsv.version>
 	</properties>
 
 	<dependencies>
@@ -75,6 +76,11 @@
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-client</artifactId>
 			<version>${hadoop.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${opencsv.version}</version>
 		</dependency>
 
 	</dependencies>
